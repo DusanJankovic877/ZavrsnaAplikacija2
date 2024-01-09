@@ -1,0 +1,56 @@
+﻿@model ZavrsnaAplikacija2.Models.Rental
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Rental</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateRented)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateRented)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateReturned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateReturned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Car.Manufacturer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car.Manufacturer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-primary" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

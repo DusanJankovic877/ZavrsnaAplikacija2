@@ -1,0 +1,50 @@
+﻿@model ZavrsnaAplikacija2.Models.Rental
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Rental</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateRented)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateRented)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateReturned)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateReturned)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Car.Manufacturer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Car.Manufacturer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RentalId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

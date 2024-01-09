@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarRentalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Car">
+    <Key>
+      <PropertyRef Name="CarId" />
+    </Key>
+    <Property Name="CarId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Manufacturer" Type="nvarchar" MaxLength="30" />
+    <Property Name="Model" Type="nvarchar" MaxLength="30" />
+    <Property Name="LicensePlate" Type="nvarchar" MaxLength="10" />
+    <Property Name="Year" Type="int" />
+    <Property Name="Available" Type="bit" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="20" />
+    <Property Name="DriverLicNo" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Rental">
+    <Key>
+      <PropertyRef Name="RentalId" />
+    </Key>
+    <Property Name="RentalId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerId" Type="int" />
+    <Property Name="CarId" Type="int" />
+    <Property Name="DateRented" Type="date" />
+    <Property Name="DateReturned" Type="date" />
+  </EntityType>
+  <Association Name="FK__Rental__CarId__3C69FB99">
+    <End Role="Car" Type="Self.Car" Multiplicity="0..1" />
+    <End Role="Rental" Type="Self.Rental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Car">
+        <PropertyRef Name="CarId" />
+      </Principal>
+      <Dependent Role="Rental">
+        <PropertyRef Name="CarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Rental__Customer__3B75D760">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Rental" Type="Self.Rental" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Rental">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CarRentalModelStoreContainer">
+    <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rental" EntityType="Self.Rental" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Rental__CarId__3C69FB99" Association="Self.FK__Rental__CarId__3C69FB99">
+      <End Role="Car" EntitySet="Car" />
+      <End Role="Rental" EntitySet="Rental" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Rental__Customer__3B75D760" Association="Self.FK__Rental__Customer__3B75D760">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Rental" EntitySet="Rental" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
